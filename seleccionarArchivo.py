@@ -79,7 +79,7 @@ def imprimirSeleccion(comando, datos):
         tempIgualdad = re.sub("\,","",temp[x])
         if tempIgualdad == "nombre" or tempIgualdad == "edad" or tempIgualdad == "activo" or tempIgualdad == "promedio":
             continuar = continuar +1
-    if contador == continuar and notRepet(temp,contador):
+    if contador == continuar and notRepet(temp,contador) and formatoBusqueda(temp, contador):
         division = crearEncabezado(temp, contador)
         try:
             busqueda = temp[contador + 3] + " " + temp[contador + 4]
@@ -91,6 +91,23 @@ def imprimirSeleccion(comando, datos):
 
     #for x in range(contador):
         #print(temp[x])
+def formatoBusqueda(temp, contador):
+    valor = len(temp)-(contador + 3)
+    if valor>1:
+        txt = temp[contador+3]
+        x =re.findall("\"", txt)
+        if x:
+            return True
+    else:
+        txt = temp[contador+3]
+        if txt.isdigit():
+            return True
+        else:
+            x = re.search("\"", txt)
+            if x:
+                return True
+
+    return False
 def notRepet(atributos, contador):
     repetir = 0
     atributoTemp = ""

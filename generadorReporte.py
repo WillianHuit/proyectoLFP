@@ -49,4 +49,4 @@ def generar(datos,comandoInicial):
         print("El comando contiene expresiones erroneas")
 
     #cargar archivo.json, Practica1.json
-    #SELECCIONAR nombre, nombre DONDe nombre = "Registro 1"
+    #SELECCIONAR nombre DONDe nombre = "Registro 1"
