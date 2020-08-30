@@ -1,49 +1,72 @@
 import re
 import cargarArchivo
 import seleccionarArchivo
+import maximoArchivo
+import minimoArchivo
+import sumaArchivo
+import cuentaArchivo
+import generadorReporte
 import json
 
 #simula la base de datos
 
 datos =[]
-
 def cargar(comandoInicial):
     temp = cargarArchivo.cargarArchivo(comandoInicial)
     for l in temp:
         datos.append(l)
-    #print(datos)
-    # encoded
-    #data_string = json.dumps(datos)
-    #print(data_string)
-    # Decoded
-    #decoded = json.loads(data_string)
-    #print(decoded)-- el siguiente codigo muestra el registro 2
-    #print("Tenemos " + str(decoded[1]["nombre"]) + " Lechugas.")
     ingresarComando()
+
+def baseCargada():
+    if datos == []:
+        return False
+    else:
+        return True
 
 def seleccionar(comandoInicial):
-    seleccionarArchivo.mostrarSeleccion(comandoInicial,datos)
+
+    if baseCargada():
+        seleccionarArchivo.mostrarSeleccion(comandoInicial,datos)
+    else:
+        print("Aun no hay registros, utiliza el comando CARGAR")
     ingresarComando()
 
-def maximo():
-    print("maximo")
+def maximo(comandoInicial):
+    if baseCargada():
+        maximoArchivo.maximoValor(comandoInicial,datos)
+    else:
+        print("Aun no hay registros, utiliza el comando CARGAR")
     ingresarComando()
 
-def minimo():
-    print("minimo")
+def minimo(comandoInicial):
+    if baseCargada():
+        minimoArchivo.minimoValor(comandoInicial,datos)
+    else:
+        print("Aun no hay registros, utiliza el comando CARGAR")
     ingresarComando()
 
-def suma():
-    print("suma")
+def suma(comandoInicial):
+    if baseCargada():
+        sumaArchivo.sumaValor(comandoInicial,datos)
+    else:
+        print("Aun no hay registros, utiliza el comando CARGAR")
     ingresarComando()
 
 def cuenta():
-    print("cuenta")
+    if baseCargada():
+        cuentaArchivo.cuentaDatos(datos)
+    else:
+        print("Aun no hay registros, utiliza el comando CARGAR")
     ingresarComando()
 def mostrarTodo():
     print(datos)
-def reportar():
-    print("reportar")
+    ingresarComando()
+
+def reportar(comandoInicial):
+    if baseCargada():
+        generadorReporte.generar(datos,comandoInicial)
+    else:
+        print("Aun no hay registros, utiliza el comando CARGAR")
     ingresarComando()
 def error():
     print("No se pudo reconocer el comando intenta de nuevo (ingresa help para ver los comandos aceptados)")
@@ -65,6 +88,7 @@ def inicio():
     ingresarComando()
 
 def ingresarComando():
+    print("Ingresa un comando:")
     comandoInicial = input()
     reconocer = re.split("\s", comandoInicial, 1)
     activarComando(reconocer[0], comandoInicial)
@@ -76,17 +100,17 @@ def activarComando(comando, comandoInicial):
     elif comando.lower() == "seleccionar":
         seleccionar(comandoInicial)
     elif comando.lower() == "maximo":
-        maximo()
+        maximo(comandoInicial)
     elif comando.lower() == "minimo":
-        minimo()
+        minimo(comandoInicial)
     elif comando.lower() == "suma":
-        suma()
+        suma(comandoInicial)
     elif comando.lower() == "cuenta":
         cuenta()
     elif comando.lower() == "reportar":
-        reportar()
+        reportar(comandoInicial)
     elif comando.lower() == "reportar":
-        reportar()
+        reportar(comandoInicial)
     elif comando.lower() == "mostrar":
         mostrarTodo()
     elif comando.lower() == "help":
