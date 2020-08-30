@@ -24,7 +24,7 @@ _Ejemplo de la sintaxis_
 ```
 CARGAR archivo1.json, archivo2.json, archivo3.json, …… archivoN.json
 ```
-_Importante: debe agregar el .json al nombre del archivo, de otro modo este marcara un herror_
+_Importante: debe agregar el .json al nombre del archivo, de otro modo este marcara un error_
 
 **Seleccionar** Permite seleccionar uno o más registros y los muestra en pantalla.
 _Ejemplo de la sintaxis_
